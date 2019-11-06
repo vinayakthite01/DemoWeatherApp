@@ -7,12 +7,13 @@
 //
 
 import Foundation
+import CoreLocation
 
 class HomeViewModel {
     // MARK: Instance variables
     
     /// LocationManager Instance
-    let locationmanager = LocationManager()
+    let locationManager = LocationManager()
     
     /// completion handler block
     typealias CompletionBlock = ([Location]?, Error?) -> Void
@@ -21,11 +22,14 @@ class HomeViewModel {
     
     /// Initializer of View Model
     init() {
-        
+        print(locationManager.currentLocation?.coordinate as Any)
     }
     
     // MARK: Instance Methods
     
+    func getWeatherDataForCurrentLocation(completionhandler: @escaping CompletionBlock) {
+        
+    }
     
     
 }
