@@ -9,8 +9,23 @@
 import Foundation
 
 class HomeViewModel {
+    // MARK: Instance variables
     
+    /// LocationManager Instance
+    let locationmanager = LocationManager()
+    
+    /// completion handler block
+    typealias CompletionBlock = ([Location]?, Error?) -> Void
+    
+    // MARK: Initializer
+    
+    /// Initializer of View Model
     init() {
         
     }
+    
+    // MARK: Instance Methods
+    
+    
+    
 }

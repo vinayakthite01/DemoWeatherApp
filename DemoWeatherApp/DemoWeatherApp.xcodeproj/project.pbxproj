@@ -15,7 +15,13 @@
 		C1C481CF2372D22900E770A4 /* DemoWeatherAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C481CE2372D22900E770A4 /* DemoWeatherAppTests.swift */; };
 		C1C481DA2372D22900E770A4 /* DemoWeatherAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C481D92372D22900E770A4 /* DemoWeatherAppUITests.swift */; };
 		C1C481EB2372D51700E770A4 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C481EA2372D51700E770A4 /* HomeViewModel.swift */; };
-		C1C481EE2372D55F00E770A4 /* NetworkLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C481ED2372D55F00E770A4 /* NetworkLayer.swift */; };
+		C1C481EE2372D55F00E770A4 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C481ED2372D55F00E770A4 /* NetworkManager.swift */; };
+		C1C481F12372D63D00E770A4 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C481F02372D63D00E770A4 /* Constants.swift */; };
+		C1C481F32372E22400E770A4 /* CitySearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C481F22372E22400E770A4 /* CitySearchViewController.swift */; };
+		C1C481F72372EB1100E770A4 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C481F62372EB1100E770A4 /* Location.swift */; };
+		C1C481FB2372F87400E770A4 /* Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C481FA2372F87400E770A4 /* Debug.swift */; };
+		C1C481FD2372FBB300E770A4 /* CitySearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C481FC2372FBB300E770A4 /* CitySearchViewModel.swift */; };
+		C1C481FF237300F800E770A4 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C481FE237300F800E770A4 /* LocationManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,7 +56,13 @@
 		C1C481D92372D22900E770A4 /* DemoWeatherAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoWeatherAppUITests.swift; sourceTree = "<group>"; };
 		C1C481DB2372D22900E770A4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C1C481EA2372D51700E770A4 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
-		C1C481ED2372D55F00E770A4 /* NetworkLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkLayer.swift; sourceTree = "<group>"; };
+		C1C481ED2372D55F00E770A4 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		C1C481F02372D63D00E770A4 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		C1C481F22372E22400E770A4 /* CitySearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitySearchViewController.swift; sourceTree = "<group>"; };
+		C1C481F62372EB1100E770A4 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		C1C481FA2372F87400E770A4 /* Debug.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Debug.swift; sourceTree = "<group>"; };
+		C1C481FC2372FBB300E770A4 /* CitySearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitySearchViewModel.swift; sourceTree = "<group>"; };
+		C1C481FE237300F800E770A4 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +118,7 @@
 				C1C481EC2372D52500E770A4 /* ViewModels */,
 				C1C481EF2372D56900E770A4 /* Layers */,
 				C1C481E92372D30B00E770A4 /* Views */,
+				C1C481F82372EB2300E770A4 /* Models */,
 				C1C481C02372D22800E770A4 /* Assets.xcassets */,
 				C1C481C22372D22800E770A4 /* LaunchScreen.storyboard */,
 				C1C481C52372D22800E770A4 /* Info.plist */,
@@ -143,6 +156,7 @@
 			isa = PBXGroup;
 			children = (
 				C1C481BB2372D21D00E770A4 /* HomeViewController.swift */,
+				C1C481F22372E22400E770A4 /* CitySearchViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -159,6 +173,7 @@
 			isa = PBXGroup;
 			children = (
 				C1C481EA2372D51700E770A4 /* HomeViewModel.swift */,
+				C1C481FC2372FBB300E770A4 /* CitySearchViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -166,9 +181,28 @@
 		C1C481EF2372D56900E770A4 /* Layers */ = {
 			isa = PBXGroup;
 			children = (
-				C1C481ED2372D55F00E770A4 /* NetworkLayer.swift */,
+				C1C481F02372D63D00E770A4 /* Constants.swift */,
+				C1C481ED2372D55F00E770A4 /* NetworkManager.swift */,
+				C1C481FA2372F87400E770A4 /* Debug.swift */,
+				C1C481FE237300F800E770A4 /* LocationManager.swift */,
 			);
 			path = Layers;
+			sourceTree = "<group>";
+		};
+		C1C481F82372EB2300E770A4 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				C1C481F92372EB3800E770A4 /* LocationModel */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		C1C481F92372EB3800E770A4 /* LocationModel */ = {
+			isa = PBXGroup;
+			children = (
+				C1C481F62372EB1100E770A4 /* Location.swift */,
+			);
+			path = LocationModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -302,10 +336,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C1C481EE2372D55F00E770A4 /* NetworkLayer.swift in Sources */,
+				C1C481F12372D63D00E770A4 /* Constants.swift in Sources */,
+				C1C481EE2372D55F00E770A4 /* NetworkManager.swift in Sources */,
 				C1C481BC2372D21D00E770A4 /* HomeViewController.swift in Sources */,
+				C1C481FD2372FBB300E770A4 /* CitySearchViewModel.swift in Sources */,
+				C1C481FF237300F800E770A4 /* LocationManager.swift in Sources */,
+				C1C481FB2372F87400E770A4 /* Debug.swift in Sources */,
+				C1C481F72372EB1100E770A4 /* Location.swift in Sources */,
 				C1C481EB2372D51700E770A4 /* HomeViewModel.swift in Sources */,
 				C1C481BA2372D21D00E770A4 /* AppDelegate.swift in Sources */,
+				C1C481F32372E22400E770A4 /* CitySearchViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
