@@ -33,7 +33,7 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
                 log.DLog(message: "Location services have restricted usage. Please enable them from setting")
                 
             case .authorizedAlways, .authorizedWhenInUse:
-                log.DLog(message: "Authorization successful.")
+                log.DLog(message: "Location Authorization successful.")
                 getLocationCoordinates()
                 
             @unknown default:

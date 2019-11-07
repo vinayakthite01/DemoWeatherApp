@@ -32,19 +32,17 @@ class NetworkManager  {
     ///   - url: URL to hit
     ///   - keyword: as parameters for the URL
     ///   - completion: completionhandler
-    func getSearchResults(forURL url: String, parameters para: String, completion: @escaping CompletionBlock) {
+    func getSearchResults(forURL url: URL, completion: @escaping CompletionBlock) {
         
         let session = URLSession.shared
-        guard let url = URL(string: url+para) else {
-            return completion(nil, AppError.unknownError)
-        }
-        
+    
+        logFor.DLog(message:"URL to hit: \(url)")
         let task = session.dataTask(with: url) {[weak self] data, response, error in
             
             if error != nil || data == nil {
                 self?.logFor.DLog(message:"Client error!")
                 DispatchQueue.main.async {
-                    completion(nil, AppError.clientError)
+                    completion(nil, PredefinedErrors.clientError)
                 }
                 return
             }
@@ -52,7 +50,7 @@ class NetworkManager  {
             guard let response = response as? HTTPURLResponse, (200...299).contains(response.statusCode) else {
                  self?.logFor.DLog(message:"Server error!")
                 DispatchQueue.main.async {
-                    completion(nil, AppError.serverError)
+                    completion(nil, PredefinedErrors.serverError)
                 }
                 return
             }
@@ -60,7 +58,7 @@ class NetworkManager  {
             guard let mime = response.mimeType, mime == HTTPRequest.mime.rawValue else {
                  self?.logFor.DLog(message:"Wrong MIME type!")
                 DispatchQueue.main.async {
-                    completion(nil, AppError.mimeError)
+                    completion(nil, PredefinedErrors.mimeError)
                 }
                 return
             }

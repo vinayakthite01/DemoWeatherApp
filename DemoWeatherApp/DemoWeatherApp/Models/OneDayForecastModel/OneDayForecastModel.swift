@@ -8,14 +8,16 @@
 
 import Foundation
 
-struct OndeDayForecaste {
+struct OneDayForecast {
     
     // MARK: - Constants
     let headlineText : String?
     let headlineCategory : String?
     let TemperatureDict : [String: Any]?
     let minimumTemperatureDict : [String: Any]?
+    let minimumTemperature : String?
     let maximumTemperatureDict : [String: Any]?
+    let maximumTemperature : String?
     let DayTimeForecaste : [String: Any]?
     let nightTimeForecaste : [String: Any]?
     
@@ -32,8 +34,11 @@ struct OndeDayForecaste {
         
         self.TemperatureDict = dailyForecaste?[0]["Temperature"] as? [String : Any]
         self.minimumTemperatureDict = TemperatureDict?["Minimum"] as? [String: Any]
+        self.minimumTemperature = minimumTemperatureDict?["value"] as? String
         self.maximumTemperatureDict = TemperatureDict?["Maximum"] as? [String: Any]
-        
+        self.maximumTemperature = maximumTemperatureDict?["value"] as? String
+        self.DayTimeForecaste = dailyForecaste?[0]["Day"] as? [String: Any]
+        self.nightTimeForecaste = dailyForecaste?[0]["Night"] as? [String: Any]       
         
     }
     

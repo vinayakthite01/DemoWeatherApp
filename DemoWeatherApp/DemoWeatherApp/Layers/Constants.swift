@@ -8,13 +8,15 @@
 
 import Foundation
 
-struct WeatherAppConstants {
+struct WeatherApiConstants {
     
-    static let apiKey = "2O5deGNXGBrjt6zXDFtUZnA91EYQgGG0"
+    static let apiKey = "DxQPOrOSD5gqavzjhAr4FmkkzsPhf6ad"
     
 }
 
 struct WeatherAppAPIs {
+//    GeoPositionSearch APi to get location details from the current location
+    static let geoSearchAPI = "http://dataservice.accuweather.com/locations/v1/cities/geoposition/search"
 //    AutoComplete search for location
     static let locationSearchAPI = "http://dataservice.accuweather.com/locations/v1/cities/autocomplete"
 //    1 Day of Daily Forecasts - It needs location key as input parameter
@@ -31,11 +33,14 @@ enum HTTPRequest : String {
     case mime = "application/json"
 }
 
-enum AppError: Error {
+enum PredefinedErrors: Error {
     case clientError
     case serverError
     case mimeError
     case unknownError
+}
+
+struct AppError: Error {
     
     init(errorCode code: Int, errorMessage message:String) {
         
