@@ -22,6 +22,8 @@
 		C1C481FB2372F87400E770A4 /* Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C481FA2372F87400E770A4 /* Debug.swift */; };
 		C1C481FD2372FBB300E770A4 /* CitySearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C481FC2372FBB300E770A4 /* CitySearchViewModel.swift */; };
 		C1C481FF237300F800E770A4 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C481FE237300F800E770A4 /* LocationManager.swift */; };
+		F3531C7D2373B355002F9783 /* HomeViewNetWorkCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3531C7C2373B355002F9783 /* HomeViewNetWorkCoordinator.swift */; };
+		F3531C802373BF86002F9783 /* OneDayForecasteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3531C7F2373BF86002F9783 /* OneDayForecasteModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +65,8 @@
 		C1C481FA2372F87400E770A4 /* Debug.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Debug.swift; sourceTree = "<group>"; };
 		C1C481FC2372FBB300E770A4 /* CitySearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitySearchViewModel.swift; sourceTree = "<group>"; };
 		C1C481FE237300F800E770A4 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		F3531C7C2373B355002F9783 /* HomeViewNetWorkCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewNetWorkCoordinator.swift; sourceTree = "<group>"; };
+		F3531C7F2373BF86002F9783 /* OneDayForecasteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneDayForecasteModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +120,7 @@
 				C1C481E72372D29800E770A4 /* AppDelegate */,
 				C1C481E82372D2A300E770A4 /* ViewControllers */,
 				C1C481EC2372D52500E770A4 /* ViewModels */,
+				F3531C7E2373B361002F9783 /* NetworkCoordinator */,
 				C1C481EF2372D56900E770A4 /* Layers */,
 				C1C481E92372D30B00E770A4 /* Views */,
 				C1C481F82372EB2300E770A4 /* Models */,
@@ -183,8 +188,8 @@
 			children = (
 				C1C481F02372D63D00E770A4 /* Constants.swift */,
 				C1C481ED2372D55F00E770A4 /* NetworkManager.swift */,
-				C1C481FA2372F87400E770A4 /* Debug.swift */,
 				C1C481FE237300F800E770A4 /* LocationManager.swift */,
+				C1C481FA2372F87400E770A4 /* Debug.swift */,
 			);
 			path = Layers;
 			sourceTree = "<group>";
@@ -193,6 +198,7 @@
 			isa = PBXGroup;
 			children = (
 				C1C481F92372EB3800E770A4 /* LocationModel */,
+				F3531C812373BF97002F9783 /* OneDayForecasteModel */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -203,6 +209,22 @@
 				C1C481F62372EB1100E770A4 /* Location.swift */,
 			);
 			path = LocationModel;
+			sourceTree = "<group>";
+		};
+		F3531C7E2373B361002F9783 /* NetworkCoordinator */ = {
+			isa = PBXGroup;
+			children = (
+				F3531C7C2373B355002F9783 /* HomeViewNetWorkCoordinator.swift */,
+			);
+			path = NetworkCoordinator;
+			sourceTree = "<group>";
+		};
+		F3531C812373BF97002F9783 /* OneDayForecasteModel */ = {
+			isa = PBXGroup;
+			children = (
+				F3531C7F2373BF86002F9783 /* OneDayForecasteModel.swift */,
+			);
+			name = OneDayForecasteModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -337,10 +359,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				C1C481F12372D63D00E770A4 /* Constants.swift in Sources */,
+				F3531C7D2373B355002F9783 /* HomeViewNetWorkCoordinator.swift in Sources */,
 				C1C481EE2372D55F00E770A4 /* NetworkManager.swift in Sources */,
 				C1C481BC2372D21D00E770A4 /* HomeViewController.swift in Sources */,
 				C1C481FD2372FBB300E770A4 /* CitySearchViewModel.swift in Sources */,
 				C1C481FF237300F800E770A4 /* LocationManager.swift in Sources */,
+				F3531C802373BF86002F9783 /* OneDayForecasteModel.swift in Sources */,
 				C1C481FB2372F87400E770A4 /* Debug.swift in Sources */,
 				C1C481F72372EB1100E770A4 /* Location.swift in Sources */,
 				C1C481EB2372D51700E770A4 /* HomeViewModel.swift in Sources */,

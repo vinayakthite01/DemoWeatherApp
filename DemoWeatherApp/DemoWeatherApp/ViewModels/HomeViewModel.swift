@@ -10,7 +10,9 @@ import Foundation
 import CoreLocation
 
 class HomeViewModel {
+    
     // MARK: Instance variables
+    let homeViewNetworkCoordinator = HomeViewNetworkCoordinator()
     
     /// LocationManager Instance
     let locationManager = LocationManager()
@@ -22,13 +24,16 @@ class HomeViewModel {
     
     /// Initializer of View Model
     init() {
-        print(locationManager.currentLocation?.coordinate as Any)
+        
     }
     
     // MARK: Instance Methods
     
+    /// Get weather datafor current location
+    ///
+    /// - Parameter completionhandler: completion handler for the task
     func getWeatherDataForCurrentLocation(completionhandler: @escaping CompletionBlock) {
-        
+        homeViewNetworkCoordinator.getCurrentLocationUpdates(completionHandler: <#(Any?, Error?) -> Void#>)
     }
     
     

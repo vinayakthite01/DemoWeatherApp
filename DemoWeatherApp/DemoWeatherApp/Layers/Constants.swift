@@ -15,8 +15,13 @@ struct WeatherAppConstants {
 }
 
 struct WeatherAppAPIs {
-    
+//    AutoComplete search for location
     static let locationSearchAPI = "http://dataservice.accuweather.com/locations/v1/cities/autocomplete"
+//    1 Day of Daily Forecasts - It needs location key as input parameter
+    static let oneDayOfDailyForecasteAPI = "http://dataservice.accuweather.com/forecasts/v1/daily/1day/"
+//    10 Days of Daily Forecasts - It needs location parameter as input parameter
+    static let tenDaysOfDailyForecaste = "http://dataservice.accuweather.com/forecasts/v1/daily/10day/"
+//    Dummy POST request
     static let dummyPOSTRequest = ""
 }
 
@@ -31,4 +36,8 @@ enum AppError: Error {
     case serverError
     case mimeError
     case unknownError
+    
+    init(errorCode code: Int, errorMessage message:String) {
+        
+    }
 }

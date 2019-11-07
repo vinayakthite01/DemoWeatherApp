@@ -15,16 +15,10 @@ class NetworkManager  {
     /// Logger
     private let logFor = Log()
     
-    /// Locations array
-    var locations : [Location] = []
-    
     // MARK: - Type Aliases
-    typealias JSONDictionary = [String: Any]
-    typealias CompletionBlock = ([Location]?, Error?) -> Void
-    
-    /// Singleton Instance
-    static let shared = NetworkManager()
-    
+    typealias jsonDictionary = [String: Any]
+    typealias CompletionBlock = (Any?, Error?) -> Void
+
     //MARK: - Initializer
     
     /// Initializetion
@@ -38,10 +32,10 @@ class NetworkManager  {
     ///   - url: URL to hit
     ///   - keyword: as parameters for the URL
     ///   - completion: completionhandler
-    func getSearchResults(forURL url: String, parameters keyword: String, completion: @escaping CompletionBlock) {
+    func getSearchResults(forURL url: String, parameters para: String, completion: @escaping CompletionBlock) {
         
         let session = URLSession.shared
-        guard let url = URL(string: url) else {
+        guard let url = URL(string: url+para) else {
             return completion(nil, AppError.unknownError)
         }
         
@@ -72,11 +66,11 @@ class NetworkManager  {
             }
             
             do {
-                let json = try JSONSerialization.jsonObject(with: data!, options: [])
-                self?.logFor.DLog(message:"The Response is :\(json) ")
+                let json = try JSONSerialization.jsonObject(with: data!, options: []) as? jsonDictionary
+                self?.logFor.DLog(message:"The Response is :\(String(describing: json)) ")
                 
                 DispatchQueue.main.async {
-                    completion(self?.locations, nil)
+                    completion(json, nil)
                 }
                 
             } catch {
