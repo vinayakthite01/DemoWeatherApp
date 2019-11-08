@@ -36,16 +36,17 @@ class HomeViewNetworkCoordinator {
         guard let urlReuest = URL(string: WeatherAppAPIs.geoSearchAPI+"?apikey="+WeatherApiConstants.apiKey+"&q="+formattedCoordinates) else {
             return completionHandler(nil, PredefinedErrors.unknownError)
         }
-        
-        networkManager.getSearchResults(forURL:urlReuest) { (jsonData, error) in
-            if let _error = error {
-                print("Error in fetching location data \(_error)")
-                let errorObj = AppError(errorCode: 0, errorMessage: "Error in fetching location data")
-                completionHandler(nil,errorObj)
-            } else {
-                if let _jsonData = jsonData as? [String:Any] {
-                    let dataModel = Location(dictionary: _jsonData)
-                    completionHandler(dataModel, nil)
+         DispatchQueue.global(qos: .userInteractive).async { [weak self] in
+            self?.networkManager.getSearchResults(forURL:urlReuest) { (jsonData, error) in
+                if let _error = error {
+                    print("Error in fetching location data \(_error)")
+                    let errorObj = AppError(errorCode: 0, errorMessage: "Error in fetching location data")
+                    completionHandler(nil,errorObj)
+                } else {
+                    if let _jsonData = jsonData as? [String:Any] {
+                        let dataModel = Location(dictionary: _jsonData)
+                        completionHandler(dataModel, nil)
+                    }
                 }
             }
         }
@@ -60,16 +61,17 @@ class HomeViewNetworkCoordinator {
         guard let url = URL(string: WeatherAppAPIs.oneDayOfDailyForecasteAPI+locationKey+"?apikey="+WeatherApiConstants.apiKey) else {
             return completionHandler(nil, PredefinedErrors.unknownError)
         }
-        
-        networkManager.getSearchResults(forURL: url) { (jsonData, error) in
-            if let _error = error {
-                print("Error in fetching weather data \(_error)")
-                let errorObj = AppError(errorCode: 0, errorMessage: "Error in fetching weather data")
-                completionHandler(nil,errorObj)
-            } else {
-                if let _jsonData = jsonData as? [String:Any] {
-                    let dataModel = OneDayForecast(dictionary: _jsonData)
-                    completionHandler(dataModel, nil)
+        DispatchQueue.global(qos: .userInteractive).async { [weak self] in
+            self?.networkManager.getSearchResults(forURL: url) { (jsonData, error) in
+                if let _error = error {
+                    print("Error in fetching weather data \(_error)")
+                    let errorObj = AppError(errorCode: 0, errorMessage: "Error in fetching weather data")
+                    completionHandler(nil,errorObj)
+                } else {
+                    if let _jsonData = jsonData as? [String:Any] {
+                        let dataModel = OneDayForecast(dictionary: _jsonData)
+                        completionHandler(dataModel, nil)
+                    }
                 }
             }
         }

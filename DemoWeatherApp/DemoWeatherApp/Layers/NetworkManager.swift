@@ -41,35 +41,28 @@ class NetworkManager  {
             
             if error != nil || data == nil {
                 self?.logFor.DLog(message:"Client error!")
-                DispatchQueue.main.async {
-                    completion(nil, PredefinedErrors.clientError)
-                }
+                completion(nil, PredefinedErrors.clientError)
                 return
             }
             
             guard let response = response as? HTTPURLResponse, (200...299).contains(response.statusCode) else {
-                 self?.logFor.DLog(message:"Server error!")
-                DispatchQueue.main.async {
-                    completion(nil, PredefinedErrors.serverError)
-                }
+                self?.logFor.DLog(message:"Server error!")
+                completion(nil, PredefinedErrors.serverError)
                 return
             }
             
             guard let mime = response.mimeType, mime == HTTPRequest.mime.rawValue else {
-                 self?.logFor.DLog(message:"Wrong MIME type!")
-                DispatchQueue.main.async {
-                    completion(nil, PredefinedErrors.mimeError)
-                }
+                self?.logFor.DLog(message:"Wrong MIME type!")
+                completion(nil, PredefinedErrors.mimeError)
+                
                 return
             }
             
             do {
                 let json = try JSONSerialization.jsonObject(with: data!, options: []) as? jsonDictionary
-                self?.logFor.DLog(message:"The Response is :\(String(describing: json)) ")
+//                self?.logFor.DLog(message:"The Response is :\(String(describing: json)) ")
                 
-                DispatchQueue.main.async {
-                    completion(json, nil)
-                }
+                completion(json, nil)
                 
             } catch {
                  self?.logFor.DLog(message:"JSON error: \(error.localizedDescription)")

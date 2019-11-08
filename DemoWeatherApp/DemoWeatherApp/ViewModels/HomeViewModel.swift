@@ -30,20 +30,6 @@ class HomeViewModel {
     
     /// Initializer of View Model
     init() {
-        
-        fetchLocationDataForCurrentGeoCoordinates {[weak self] (executionStatus, optionalError) in
-            if executionStatus == true {
-                self?.getWeatherDataForCurrentLocation { (executionStatus, error) in
-                    if executionStatus == true {
-                        print("Weather Data successfully fetched")
-                    } else {
-                        print("Error\(String(describing: error))")
-                    }
-                }
-            } else {
-                print("Error in Location fetch. Weather data cannot be updated at this time")
-            }
-        }
     }
     
     // MARK: Instance Methods
@@ -53,6 +39,7 @@ class HomeViewModel {
     /// - Parameter completionhandler: completion handler of the task.
     func fetchLocationDataForCurrentGeoCoordinates(completionhandler: @escaping CompletionBlock) {
         guard let _currentLocation = locationManager.currentLocation else {
+             print("Error in Location fetch. Weather data cannot be updated at this time")
             return
         }
         let lattitude = String(format:"%f",  _currentLocation.coordinate.latitude)
@@ -61,10 +48,14 @@ class HomeViewModel {
         homeViewNetworkCoordinator.fetchCurrentLocationDetails(withCoordinates: currentlocationCoordinates) { [weak self] (optionalLocationDetails, optionalError) in
             if let error = optionalError {
                 print("Error in fetching the location details")
-                completionhandler(false, error)
+                DispatchQueue.main.async {
+                    completionhandler(false, error)
+                }
             } else {
                 self?.currentLocationDetails = optionalLocationDetails
-                completionhandler(true, nil)
+                DispatchQueue.main.async {
+                    completionhandler(true, nil)
+                }
             }
         }
     }
@@ -78,10 +69,14 @@ class HomeViewModel {
                 (optionalData, optionalError) in
                 if let error = optionalError {
                     print("Error in HomeViewModel \(error)")
-                    completionhandler(false, error)
+                    DispatchQueue.main.async {
+                        completionhandler(false, error)
+                    }
                 } else {
                     self?.todaysForeCast = optionalData
-                    completionhandler(true, nil)
+                    DispatchQueue.main.async {
+                        completionhandler(true, nil)
+                    }
                 }
             }
         }
@@ -113,8 +108,8 @@ class HomeViewModel {
     ///
     /// - Returns: today's maximum temperature forecast
     func forecastMaximumTemperature() -> String? {
-        if let _forecast = todaysForeCast {
-            return _forecast.maximumTemperature
+        if let maxTemperature = todaysForeCast?.maximumTemperature {
+            return String(format:"%.2f", maxTemperature)
         }
         return nil
     }
@@ -123,8 +118,8 @@ class HomeViewModel {
     ///
     /// - Returns: today's minimum temperature forecast
     func forecastMinimumTemperature() -> String? {
-        if let _forecast = todaysForeCast {
-            return _forecast.minimumTemperature
+        if let minTemperature = todaysForeCast?.minimumTemperature {
+            return  String(format:"%.2f", minTemperature)
         }
         return nil
     }

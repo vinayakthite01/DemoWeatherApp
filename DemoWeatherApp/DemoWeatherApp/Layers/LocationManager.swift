@@ -7,9 +7,10 @@
 //
 
 import Foundation
+import UIKit
 import CoreLocation
 
-class LocationManager: NSObject, CLLocationManagerDelegate {
+class LocationManager: NSObject {
     
     private let log = Log()
     
@@ -26,29 +27,33 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
         super.init()
 
         if CLLocationManager.locationServicesEnabled() {
-            
+            getLocationAccess()
             switch (CLLocationManager.authorizationStatus()) {
                 
             case .notDetermined, .restricted, .denied:
                 log.DLog(message: "Location services have restricted usage. Please enable them from setting")
                 
             case .authorizedAlways, .authorizedWhenInUse:
+                NotificationCenter.default.post(name: .locationDidChangeNotification, object: nil)
                 log.DLog(message: "Location Authorization successful.")
-                getLocationCoordinates()
                 
             @unknown default:
-                log.DLog(message: "Error in determining the case")
+                log.DLog(message: "Error in determining the case for location sharing")
             }
         } else {
             log.DLog(message: "Device not enabled for locationservices")
         }
     }
+}
+
+extension LocationManager: CLLocationManagerDelegate {
     
     /// It fetches the current location coordinates and assigns to currentLocation object
-    private func getLocationCoordinates () {
+    private func getLocationAccess () {
         
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
+        currentLocation = locationManager.location
         
         if self.locationManager.responds(to: #selector(CLLocationManager.requestAlwaysAuthorization)) {
             locationManager.requestAlwaysAuthorization()
@@ -57,4 +62,22 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
         }
     }
     
+    /// This delegate method is called whenever there is change in location authorization status.
+    ///
+    /// - Parameters:
+    ///   - manager: location manager
+    ///   - status: aurthorization status
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        if (status == .denied || status == .notDetermined || status == .restricted ) {
+            // The user denied authorization
+            let okHandler = {}
+            AlertView.sharedInstance.showAlertView(title: "" , message: "Location authorization status changed to restricted.", actions: [okHandler], titles: ["Ok"], actionStyle: UIAlertController.Style.alert)
+            print("Location authorization status changed to restricted.")
+        } else if (status == .authorizedAlways || status == .authorizedWhenInUse) {
+            // The user accepted authorization
+             NotificationCenter.default.post(name: .locationDidChangeNotification, object: nil)
+            print("Location authorization status changed to allow always.")
+        }
+    }
+
 }

@@ -15,9 +15,9 @@ struct OneDayForecast {
     let headlineCategory : String?
     let TemperatureDict : [String: Any]?
     let minimumTemperatureDict : [String: Any]?
-    let minimumTemperature : String?
+    let minimumTemperature : Float?
     let maximumTemperatureDict : [String: Any]?
-    let maximumTemperature : String?
+    let maximumTemperature : Float?
     let DayTimeForecaste : [String: Any]?
     let nightTimeForecaste : [String: Any]?
     
@@ -34,9 +34,9 @@ struct OneDayForecast {
         
         self.TemperatureDict = dailyForecaste?[0]["Temperature"] as? [String : Any]
         self.minimumTemperatureDict = TemperatureDict?["Minimum"] as? [String: Any]
-        self.minimumTemperature = minimumTemperatureDict?["value"] as? String
+        self.minimumTemperature = minimumTemperatureDict?["Value"] as? Float
         self.maximumTemperatureDict = TemperatureDict?["Maximum"] as? [String: Any]
-        self.maximumTemperature = maximumTemperatureDict?["value"] as? String
+        self.maximumTemperature = maximumTemperatureDict?["Value"] as? Float
         self.DayTimeForecaste = dailyForecaste?[0]["Day"] as? [String: Any]
         self.nightTimeForecaste = dailyForecaste?[0]["Night"] as? [String: Any]       
         
@@ -46,7 +46,7 @@ struct OneDayForecast {
     ///
     /// - Parameter dictionary: json dictionary object
     init(dictionary: [String: Any]) {
-        let headlineDict = dictionary["Haedline"] as? [String: Any]
+        let headlineDict = dictionary["Headline"] as? [String: Any]
         let dailyForecasts = dictionary["DailyForecasts"] as? [[String : Any]]
         self.init(headLine: headlineDict, dailyForecaste: dailyForecasts )
     }

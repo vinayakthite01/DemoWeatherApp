@@ -41,8 +41,10 @@ enum PredefinedErrors: Error {
 }
 
 struct AppError: Error {
-    
     init(errorCode code: Int, errorMessage message:String) {
-        
     }
+}
+
+extension Notification.Name {
+    static let locationDidChangeNotification = Notification.Name("locationNotification")
 }
